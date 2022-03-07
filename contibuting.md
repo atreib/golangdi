@@ -1,13 +1,3 @@
-# Get started
-
-- Create/start the infrastructure containers: `docker-compose up -d`
-- Load the .env file into shell: `source .env`
-- Start the application: `go run cmd/server.go`
-- Create a new migration: `migrate create -ext sql -dir db/migrations -seq {migration_name}`
-- Running migrations: `migrate -database ${POSTGRESQL_URL} -path database/migrations up`
-- Rollback migrations: `migrate -database ${POSTGRESQL_URL} -path database/migrations down`
-- Close the infrastructure containers: `docker-compose down`
-
 # .env file
 
 Rename the `.env.copy` to `.env` and set the variables values according to your environment. They are pretty much mirrored with the `docker-compose.yaml` file.
