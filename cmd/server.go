@@ -4,27 +4,24 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/atreib/golangdi/infra/libs"
 	"github.com/atreib/golangdi/infra/repositories"
-	"github.com/atreib/golangdi/services"
+	services "github.com/atreib/golangdi/services/category"
 )
 
 func main() {
-	jwtEncrypter := &libs.JwtEncrypter{}
-	userRepository := &repositories.UserRepository{}
-	authenticationService := &services.AuthenticateService{
-		UserRepository: userRepository,
-		JwtEncrypter:   jwtEncrypter,
+	categoriesRepo := &repositories.InMemoryCategoryRepository{}
+	listCategoriesService := &services.ListCategoriesService{
+		CategoryRepository: categoriesRepo,
 	}
 
-	username := "admin"
-	//password := "123456" // correct password
-	password := "123" // wrong password
-	user, err := authenticationService.Authenticate(username, password)
+	categories, err := listCategoriesService.List()
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Authentication succeded:", user.User.Login)
+	fmt.Println("Categories:")
+	for _, v := range categories {
+		fmt.Println("-", v.Name)
+	}
 }

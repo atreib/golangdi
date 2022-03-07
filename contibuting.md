@@ -23,11 +23,12 @@ We're using [docker-compose](https://docs.docker.com/compose/) to manage our inf
 # Folder structure
 
 - `cmd`: Project's entrypoint
-- `entities`: Entities/models
-- `infra`: Lowest lever of abstraction
-  - `libs`: Libraries non-related to the project goal, but required (jwt, encryption, etc)
-  - `repositores`: Repositories of entities
+- `entities`: Entities structs
+- `infra`: Lowest level of abstraction to services and tools
+  - `repositores`: Repositories of entities and its interfaces
+    - `__mocks__`: Mocks and stubs for unit testing
 - `services`: Services related to the project goal
+  - `[resource]`: Each resource has its own directory
 - `database`: All database-related files
   - `migrations`: Migrations
   - `.data`: Database volume (Not commited)
@@ -44,3 +45,9 @@ Every migration creates two files: `.up.sql` and `.down.sql`. They're the basic 
 - Rollback migrations: `migrate -database ${POSTGRESQL_URL} -path database/migrations down`
 
 > Our migrations use variables from the .env file, so don't forget to setup your .env file and run `source .env` before using the migrations' commands
+
+# Unit testing
+
+We'll use the `testing` libraru in order to implement unit testing in Go. To do so, just create a file with the suffix `_test`, together/related to the module you want to test. For instance, let's say that we have a `hello.go` file implemeting some behavior (and we want to test it). So, we would create a `hello_test.go` file, implementing the tests.
+
+- Run the unit tests: `go test -v ./...`

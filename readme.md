@@ -32,3 +32,4 @@ Feel free to read the `contributing.md` file and improve this project.
 - Running migrations: `migrate -database ${POSTGRESQL_URL} -path database/migrations up`
 - Rollback migrations: `migrate -database ${POSTGRESQL_URL} -path database/migrations down`
 - Close the infrastructure containers: `docker-compose down`
+- Run the unit tests: `go test -v ./...`
