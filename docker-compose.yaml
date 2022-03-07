@@ -7,7 +7,7 @@ services:
     restart: always
     tty: true
     volumes:
-      - ./.data/sqldb:/var/lib/postgresql/data
+      - ./database/.data/sqldb:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=123456
     networks:
