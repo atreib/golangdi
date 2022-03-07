@@ -1,0 +1,20 @@
+version: "3"
+
+services: 
+  sqldb: 
+    image: postgres
+    container_name: golangdi-sqldb
+    restart: always
+    tty: true
+    volumes:
+      - ./.data/sqldb:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=123456
+    networks:
+      - golangdinet
+    ports:
+      - "54321:5432"
+
+networks:
+  golangdinet:
+    driver: bridge
