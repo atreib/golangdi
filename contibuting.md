@@ -22,16 +22,24 @@ We're using [docker-compose](https://docs.docker.com/compose/) to manage our inf
 
 # Folder structure
 
+![](./docs/arch.drawio.png)
+
 - `cmd`: Project's entrypoint
-- `entities`: Entities structs
-- `infra`: Lowest level of abstraction to services and tools
-  - `repositores`: Repositories of entities and its interfaces
-    - `__mocks__`: Mocks and stubs for unit testing
-- `services`: Services related to the project goal
-  - `[resource]`: Each resource has its own directory
+  - `factories`: Functions that create our endpoints ready-to-use, applying the DI and returning an Endpoint Service
+    - `[resource]`: Each resource has its own directory
 - `database`: All database-related files
   - `migrations`: Migrations
   - `.data`: Database volume (Not commited)
+- `entities`: Entities structs
+- `infra`: Lowest level of abstraction to services and tools
+  - `repositores`: Repositories of entities and its interfaces
+    - `[resource]`: Each resource has its own directory
+      - `__mocks__`: Mocks and stubs for unit testing, related to the respective resource
+- `presentation`: The highest layer, where we're going to find our endpoints
+  - `endpoints`: Implementation of our endpoints, using our services and returning a HTTP Response
+    - `[resource]`: Each resource has its own directory
+- `services`: Services related to the project goal
+  - `[resource]`: Each resource has its own directory
 
 # Migrations (PostgreSQL)
 

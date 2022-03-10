@@ -3,8 +3,8 @@ package services
 import (
 	"testing"
 
-	"github.com/atreib/golangdi/infra/repositories"
-	mocks "github.com/atreib/golangdi/infra/repositories/__mocks__"
+	repositories "github.com/atreib/golangdi/infra/repositories/category"
+	mocks "github.com/atreib/golangdi/infra/repositories/category/__mocks__"
 )
 
 func makeSut() (*ListCategoriesService, repositories.ICategoryRepository) {

@@ -2,7 +2,7 @@ package mocks
 
 import (
 	"github.com/atreib/golangdi/entities"
-	"github.com/atreib/golangdi/infra/repositories"
+	repositories "github.com/atreib/golangdi/infra/repositories/category"
 )
 
 var mockCategories = []*entities.Category{

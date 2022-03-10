@@ -1,27 +1,24 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
-	"github.com/atreib/golangdi/infra/repositories"
-	services "github.com/atreib/golangdi/services/category"
+	factories "github.com/atreib/golangdi/cmd/factories/category"
+	"github.com/atreib/golangdi/presentation"
 )
 
 func main() {
-	categoriesRepo := &repositories.InMemoryCategoryRepository{}
-	listCategoriesService := &services.ListCategoriesService{
-		CategoryRepository: categoriesRepo,
-	}
-
-	categories, err := listCategoriesService.List()
+	endpoint := factories.MakeList()
+	result := endpoint.Handle(presentation.IRequest{})
+	jsonData, err := json.Marshal(&result.Body)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	fmt.Println("Status:", result.Status)
 	fmt.Println("Categories:")
-	for _, v := range categories {
-		fmt.Println("-", v.Name)
-	}
+	fmt.Println(string(jsonData))
 }

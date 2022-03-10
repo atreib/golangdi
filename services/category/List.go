@@ -2,7 +2,7 @@ package services
 
 import (
 	"github.com/atreib/golangdi/entities"
-	"github.com/atreib/golangdi/infra/repositories"
+	repositories "github.com/atreib/golangdi/infra/repositories/category"
 )
 
 type ListCategoriesService struct {
